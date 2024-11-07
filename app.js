@@ -2,7 +2,7 @@ let second = 0;
 let tens = 0;
 let interval; // saat degiskeni
 
-let getSecosnds = document.querySelector(".second");
+let getSeconds = document.querySelector(".second");
 let getTens = document.querySelector(".tens");
 
 let btnStart = document.querySelector(".btnStart");
@@ -11,7 +11,21 @@ let btnReset = document.querySelector(".btnReset"); // Kullanacagimiz 5 adet tan
 
 btnStart.addEventListener("click", () => {
   // console.log(btnStart); //btnStart butonunu yakaldigimizi kontrol ediyoruz.
+  interval = setInterval(timer, 10);
+});
 
+btnStop.addEventListener("click", () => {
+  clearInterval(interval);
+});
+
+btnReset.addEventListener("click", () => {
+  tens = "00";
+  second = "00";
+  getSeconds.innerHTML = second;
+  getTens.innerHTML = tens;
+});
+
+function timer() {
   tens++;
 
   if (tens <= 9) {
@@ -24,12 +38,12 @@ btnStart.addEventListener("click", () => {
 
   if (tens > 99) {
     second++;
-    getSecosnds.innerHTML = "0" + second;
+    getSeconds.innerHTML = "0" + second;
     tens = 0;
     getTens.innerHTML = "0" + tens;
   }
 
   if (second > 9) {
-    getSecosnds.innerHTML = second;
+    getSeconds.innerHTML = second;
   }
-});
+}
